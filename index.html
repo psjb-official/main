@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSJB - Pemuda Siantar Jumat Berbagi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('banner PSJB.png');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Tailwind utility classes below are for reference only. Remove @apply from <style> for pure CDN usage. */
+        /* .section-title { @apply text-3xl font-bold text-center mb-4 text-gray-800; } */
+        /* .section-subtitle { @apply text-center text-gray-600 mb-12 max-w-2xl mx-auto; } */
+        /* .card { @apply bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105; } */
+        /* .nav-link { @apply px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 hover:text-gray-900; } */
+        /* .nav-link-active { @apply px-3 py-2 rounded-md text-sm font-medium bg-yellow-500 text-white; } */
+        /* .btn { @apply px-6 py-3 rounded-lg font-semibold shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2; } */
+        /* .btn-primary { @apply bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-400; } */
+        /* .btn-secondary { @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400; } */
+        /* .progress-bar-container { @apply w-full bg-gray-200 rounded-full h-6 mb-4 overflow-hidden; } */
+        /* .progress-bar { @apply bg-green-500 h-6 text-xs font-medium text-green-100 text-center p-1 leading-none rounded-full; } */
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2d3748; /* text-gray-800 */
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #718096; /* text-gray-600 */
+            margin-bottom: 3rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4a5568;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-link:hover {
+            background: #e2e8f0;
+            color: #1a202c;
+        }
+        .nav-link-active {
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: #f59e42;
+            background: #f59e42; /* bg-yellow-500 */
+            color: #fff;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+            outline: none;
+        }
+        .btn:focus {
+            box-shadow: 0 0 0 2px #f6e05e;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn-primary {
+            background: #f59e42; /* bg-yellow-500 */
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #d97706; /* hover:bg-yellow-600 */
+        }
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #2d3748;
+        }
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+        /* Animasi sederhana untuk fade-in */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background: #e2e8f0;
+            border-radius: 9999px;
+            height: 1.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: #22c55e;
+            height: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #d1fae5;
+            text-align: center;
+            padding: 0.25rem;
+            line-height: 1.25rem;
+            border-radius: 9999px;
+        }
+        #wa-float-btn {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            border-radius: 50%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 56px;
+            height: 56px;
+            background: #25D366; /* WhatsApp green */
+            padding: 0;
+        }
+        #wa-float-btn:hover {
+            transform: scale(1.08) rotate(-6deg);
+            box-shadow: 0 8px 24px rgba(37,211,102,0.25);
+        }
+        #wa-float-btn svg {
+            display: block;
+            width: 48px;
+            height: 48px;
+            margin: auto;
+        }
+        /* Tombol Instagram Mengambang */
+        #ig-float-btn {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 5.5rem;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+            border-radius: 50%;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 56px;
+            height: 56px;
+            background: #E1306C; /* Instagram pink */
+            padding: 0;
+        }
+        #ig-float-btn:hover {
+            transform: scale(1.08) rotate(-6deg);
+            box-shadow: 0 8px 24px rgba(225,48,108,0.25);
+        }
+        #ig-float-btn svg {
+            display: block;
+            width: 48px;
+            height: 48px;
+            margin: auto;
+        }
+        @media (max-width: 640px) {
+    /* Section: padding dan margin konsisten */
+    section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-top: 2.5rem !important;
+        padding-bottom: 2.5rem !important;
+        margin-bottom: 0 !important;
+    }
+    .section-title {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 !important;
+    }
+    .section-subtitle {
+        font-size: 0.95rem !important;
+        margin-bottom: 2rem !important;
+        padding: 0 !important;
+    }
+    /* Navigasi mobile: padding dan font lebih besar */
+    #mobile-menu a {
+        font-size: 1.1rem !important;
+        padding: 0.75rem 0 !important;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    #mobile-menu a:last-child {
+        border-bottom: none;
+    }
+    /* Grid program, galeri, kontak: 1 kolom */
+    #kegiatan .grid, #galeriGrid, #kontak .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+    /* Galeri grid: 2 kolom jika banyak gambar */
+    #galeriGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 0.75rem !important;
+    }
+    /* Card dan galeri: padding & margin lebih kecil */
+    .card, #galeriGrid > div, #kontak .bg-white {
+        padding: 0.75rem !important;
+        margin-bottom: 1rem !important;
+        border-radius: 0.75rem !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+    }
+    /* Gambar galeri dan card lebih kecil */
+    #galeriGrid img, .card img {
+        height: 140px !important;
+        min-height: 100px !important;
+        object-fit: cover !important;
+        width: 100% !important;
+        aspect-ratio: 3/4 !important;
+        background: #f3f4f6;
+    }
+    #galeriGrid > div {
+        padding: 0 !important;
+        margin: 0 !important;
+        border-radius: 0.75rem !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07) !important;
+        background: #f3f4f6 !important;
+    }
+    /* Modal galeri lebih kecil */
+    #modalGaleri .relative {
+        max-width: 98vw !important;
+    }
+    #modalGaleri img {
+        max-height: 55vh !important;
+    }
+    /* Tombol mengambang tidak tumpang tindih */
+    #wa-float-btn {
+        bottom: 5.5rem !important;
+        right: 1rem !important;
+    }
+    #ig-float-btn {
+        bottom: 1.5rem !important;
+        right: 1rem !important;
+    }
+    /* Form kontak: padding kecil, full width */
+    #kontak form {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    /* Footer font kecil dan padding kecil */
+    footer p {
+        font-size: 0.85rem !important;
+    }
+    footer {
+        padding: 1.25rem 0 !important;
+    }
+    #kontak .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+    }
+    #kontak .bg-white {
+        padding: 1.25rem 1rem !important;
+        margin-bottom: 1.25rem !important;
+        border-radius: 0.85rem !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.09) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    #kontak .bg-white:last-child {
+        margin-bottom: 0 !important;
+    }
+    #kontak ul.space-y-4 > li {
+        gap: 0.5rem !important;
+        padding: 0.25rem 0 !important;
+        align-items: flex-start !important;
+    }
+    #kontak ul.space-y-4 > li span.w-24 {
+        min-width: 4.5rem !important;
+        width: 4.5rem !important;
+        display: inline-block !important;
+        text-align: left !important;
+        font-size: 0.97rem !important;
+    }
+    #kontak ul.space-y-4 > li a {
+        font-size: 0.97rem !important;
+        word-break: break-all;
+    }
+    #kontak .bg-white h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    #kontak form {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    #kontak form .text-center {
+        margin-top: 1.25rem !important;
+    }
+    #kontak input, #kontak textarea {
+        font-size: 1rem !important;
+        padding: 0.6rem 0.9rem !important;
+    }
+    #kontak label {
+        font-size: 0.97rem !important;
+    }
+}
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center">
+                    <img src="PSJB New Logo.png" alt="Logo PSJB" class="h-10 w-10 rounded-full mr-2 border-2 border-yellow-500 bg-white object-cover">
+                    <span class="text-xl font-bold text-black inline">PSJB</span>
+                </a>
+                <div class="hidden md:flex space-x-4">
+                    <a href="#beranda" class="nav-link-active">Beranda</a>
+                    <a href="#tentang" class="nav-link">Tentang Kami</a>
+                    <a href="#kegiatan" class="nav-link">Program</a>
+                    <a href="#galeri" class="nav-link">Galeri</a>
+                    <a href="#donasi" class="nav-link">Donasi</a>
+                    <a href="#kontak" class="nav-link">Kontak</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-2 space-y-1">
+                <a href="#beranda" class="block nav-link text-center nav-link-active">Beranda</a>
+                <a href="#tentang" class="block nav-link text-center">Tentang Kami</a>
+                <a href="#kegiatan" class="block nav-link text-center">Program</a>
+                <a href="#galeri" class="block nav-link text-center">Galeri</a>
+                <a href="#donasi" class="block nav-link text-center">Donasi</a>
+                <a href="#kontak" class="block nav-link text-center">Kontak</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="beranda" class="hero-bg text-white py-20 md:py-32 fade-in">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Pemuda Siantar Jumat Berbagi</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Menebar Kebaikan, Menginspirasi Perubahan. Bergabunglah dengan gerakan pemuda peduli di Pematangsiantar.</p>
+            <a href="#kegiatan" class="btn btn-primary mr-2 mb-2 md:mb-0">Lihat Kegiatan</a>
+            <a href="#donasi" class="btn btn-secondary">Donasi Sekarang</a>
+        </div>
+    </section>
+
+    <section id="tentang" class="py-16 md:py-24 bg-white fade-in">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title mb-2">Tentang PSJB</h2>
+            <p class="section-subtitle mb-12">Pemuda Siantar Jumat Berbagi (PSJB) adalah gerakan sosial yang diinisiasi oleh para pemuda di Pematangsiantar untuk menebar kebaikan dan membantu sesama, khususnya pada hari Jumat yang penuh berkah.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-2xl transition-all">
+                    <div class="h-16 w-16 flex items-center justify-center rounded-full bg-gray-200 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Visi Kami</h3>
+                    <p class="text-gray-600">Menjadi pelopor gerakan kepemudaan yang inspiratif dan berdampak positif bagi masyarakat Pematangsiantar.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-2xl transition-all">
+                    <div class="h-16 w-16 flex items-center justify-center rounded-full bg-gray-200 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Misi Kami</h3>
+                    <p class="text-gray-600">Mengadakan program berbagi secara rutin, memberdayakan potensi pemuda, dan membangun jaringan kolaborasi untuk kebaikan bersama.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-2xl transition-all">
+                    <div class="h-16 w-16 flex items-center justify-center rounded-full bg-gray-200 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-800">Nilai-Nilai</h3>
+                    <p class="text-gray-600">Kepedulian, Kolaborasi, Keikhlasan, Inspirasi, dan Keberlanjutan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kegiatan" class="py-16 md:py-24 bg-gray-100 fade-in">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Program Kami</h2>
+            <p class="section-subtitle">Beberapa program rutin dan insidental yang kami selenggarakan untuk membantu sesama.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <img src="https://placehold.co/600x400/81e6d9/ffffff?text=Berbagi+Stiker+Adab+Mesjid" alt="Berbagi Stiker Adab Mesjid, Buku Sifat Sholat Nabi, Sutrah, dan Tools Lain" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Berbagi Stiker Adab Mesjid, Buku Sifat Sholat Nabi, Sutrah, dan Tools Lain (Mingguan)</h3>
+                        <p class="text-gray-600 mb-4">Membagikan Stiker Adab Masjid, buku Sifat Sholat Nabi, Sutrah (pembatas sholat), serta berbagai alat penunjang ibadah lainnya untuk meningkatkan pemahaman dan kenyamanan beribadah di masjid.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-600 font-medium">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/f6ad55/ffffff?text=Berbagi+Makan+Jumat" alt="Berbagi Makan di Hari Jumat" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Berbagi Makanan di Hari Jumat (Mingguan)</h3>
+                        <p class="text-gray-600 mb-4">Berbagi dalam bentuk makan dan snack lainnya di masjid setiap Jumat untuk jamaah dan masyarakat sekitar.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-600 font-medium">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://placehold.co/600x400/9f7aea/ffffff?text=Berbagi+Dhuafa+Fakir" alt="Berbagi dengan Dhuafa & Fakir" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Berbagi dengan Dhuafa & Fakir (Bulanan)<br><span class='text-base font-normal'>(200 ribu/Mustahik, berupa sembako)</span></h3>
+                        <p class="text-gray-600 mb-4">Program penyaluran bantuan sembako senilai 200 ribu rupiah per mustahik untuk dhuafa dan fakir, agar kebutuhan pokok mereka dapat terpenuhi dan meringankan beban hidup.</p>
+                        <a href="#" class="text-yellow-500 hover:text-yellow-600 font-medium">Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="py-16 md:py-24 bg-white fade-in">
+        <div class="container mx-auto px-0">
+            <h2 class="section-title">Galeri Kegiatan</h2>
+            <p class="section-subtitle">Momen-momen kebersamaan dan kebahagiaan dalam setiap kegiatan PSJB.</p>
+            <div id="galeriGrid" class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 mt-8">
+                <div class="aspect-[3/4] overflow-hidden group cursor-pointer bg-gray-100">
+                    <img src="galeri-kegiatan/galery1.png" alt="Kegiatan Mingguan 1" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90 aspect-[3/4]" onclick="openModal(this)" onerror="this.onerror=null;this.src='https://placehold.co/400x533/cbd5e0/ffffff?text=Gagal+Muat';">
+                </div>
+                <div class="aspect-[3/4] overflow-hidden group cursor-pointer bg-gray-100">
+                    <img src="galeri-kegiatan/galery2.png" alt="Kegiatan Mingguan 2" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90 aspect-[3/4]" onclick="openModal(this)" onerror="this.onerror=null;this.src='https://placehold.co/400x533/cbd5e0/ffffff?text=Gagal+Muat';">
+                </div>
+                <div class="aspect-[3/4] overflow-hidden group cursor-pointer bg-gray-100">
+                    <img src="galeri-kegiatan/galery3.png" alt="Kegiatan Mingguan 3" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90 aspect-[3/4]" onclick="openModal(this)" onerror="this.onerror=null;this.src='https://placehold.co/400x533/cbd5e0/ffffff?text=Gagal+Muat';">
+                </div>
+                <div class="aspect-[3/4] overflow-hidden group cursor-pointer bg-gray-100">
+                    <img src="galeri-kegiatan/galery4.png" alt="Kegiatan Mingguan 4" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90 aspect-[3/4]" onclick="openModal(this)" onerror="this.onerror=null;this.src='https://placehold.co/400x533/cbd5e0/ffffff?text=Gagal+Muat';">
+                </div>
+            </div>
+            <!-- Modal Preview -->
+            <div id="modalGaleri" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden transition-all duration-200">
+                <div class="relative w-full max-w-md px-4 flex items-center">
+                    <!-- Tombol Sebelumnya -->
+                    <button id="modalPrev" aria-label="Sebelumnya" class="absolute left-0 z-10 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200 focus:outline-none" style="top:50%;transform:translateY(-50%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    </button>
+                    <div class="aspect-[3/4] w-full flex items-center justify-center mx-auto">
+                        <img id="modalImg" src="" alt="Preview" class="w-full h-full object-contain aspect-[3/4] rounded-xl shadow-2xl border-4 border-white transition-all duration-300 bg-white">
+                    </div>
+                    <!-- Tombol Selanjutnya -->
+                    <button id="modalNext" aria-label="Selanjutnya" class="absolute right-0 z-10 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200 focus:outline-none" style="top:50%;transform:translateY(-50%);">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                    <button onclick="closeModal()" class="absolute top-2 right-2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-lg transition-all duration-200"><svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 18L18 6M6 6l12 12'/></svg></button>
+                </div>
+            </div>
+            <script>
+            // Kumpulan gambar galeri
+            var galeriImgs = Array.from(document.querySelectorAll('#galeriGrid img'));
+            var galeriSrcs = galeriImgs.map(img => img.src);
+            var galeriAlts = galeriImgs.map(img => img.alt);
+            var galeriIndex = 0;
+
+            function openModal(img) {
+                var modal = document.getElementById('modalGaleri');
+                var modalImg = document.getElementById('modalImg');
+                galeriIndex = galeriImgs.indexOf(img);
+                if (galeriIndex < 0) galeriIndex = 0;
+                showModalImg();
+                modal.classList.remove('hidden');
+                setTimeout(function(){modal.classList.add('backdrop-blur-sm');}, 10);
+            }
+            function showModalImg() {
+                var modalImg = document.getElementById('modalImg');
+                modalImg.src = galeriSrcs[galeriIndex];
+                modalImg.alt = galeriAlts[galeriIndex];
+            }
+            function closeModal() {
+                var modal = document.getElementById('modalGaleri');
+                modal.classList.remove('backdrop-blur-sm');
+                setTimeout(function(){modal.classList.add('hidden');}, 150);
+            }
+            // Navigasi gambar
+            function prevImg() {
+                galeriIndex = (galeriIndex - 1 + galeriSrcs.length) % galeriSrcs.length;
+                showModalImg();
+            }
+            function nextImg() {
+                galeriIndex = (galeriIndex + 1) % galeriSrcs.length;
+                showModalImg();
+            }
+            // Event tombol
+            var modalGaleri = document.getElementById('modalGaleri');
+            if (modalGaleri) {
+                modalGaleri.addEventListener('click', function(e) {
+                    if (e.target === modalGaleri) {
+                        closeModal();
+                    }
+                });
+                var modalContent = modalGaleri.querySelector('.relative');
+                if (modalContent) {
+                    modalContent.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                    });
+                }
+                // Tombol prev/next
+                var btnPrev = document.getElementById('modalPrev');
+                var btnNext = document.getElementById('modalNext');
+                if (btnPrev) btnPrev.onclick = function(e){ e.stopPropagation(); prevImg(); };
+                if (btnNext) btnNext.onclick = function(e){ e.stopPropagation(); nextImg(); };
+            }
+            document.addEventListener('keydown', function(e) {
+                if (!modalGaleri.classList.contains('hidden')) {
+                    if (e.key === 'Escape') closeModal();
+                    if (e.key === 'ArrowLeft') prevImg();
+                    if (e.key === 'ArrowRight') nextImg();
+                }
+            });
+            </script>
+        </div>
+    </section>
+
+    <section id="donasi" class="py-16 md:py-24 bg-yellow-600 text-white fade-in">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Dukung Gerakan Kami</h2>
+            <p class="mb-8 max-w-xl mx-auto">Setiap kontribusi Anda sangat berarti untuk keberlangsungan program-program kami dan membantu lebih banyak orang yang membutuhkan.</p>
+            <!-- Fitur Dinamis: Form input donasi -->
+            <!-- <div class="bg-yellow-500/20 p-4 rounded-lg mb-6 max-w-lg mx-auto">
+                <form id="donasiForm" class="flex flex-col md:flex-row gap-2 items-center justify-center">
+                    <input type="number" id="inputTarget" class="px-3 py-2 rounded border border-gray-300 text-gray-800 w-full md:w-1/2" placeholder="Target Donasi (Rp)" min="1000">
+                    <input type="number" id="inputTerkumpul" class="px-3 py-2 rounded border border-gray-300 text-gray-800 w-full md:w-1/2" placeholder="Terkumpul (Rp)" min="0">
+                    <button type="submit" class="btn btn-primary w-full md:w-auto">Update</button>
+                </form>
+                <div id="donasiFormMsg" class="text-xs text-gray-800 mt-2"></div>
+            </div> -->
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-xl max-w-lg mx-auto">
+                <h3 class="text-2xl font-semibold mb-2">Progres Donasi Saat Ini</h3>
+                <p class="text-sm text-gray-600 mb-4">Target: Rp <span id="targetDonasiText">10.000.000</span></p>
+                <div class="progress-bar-container mb-1">
+                    <div id="donationProgressBar" class="progress-bar" style="width: 65%;" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                </div>
+                <p id="donationProgressText" class="text-gray-700 font-medium mb-6">Terkumpul: Rp 6.500.000</p>
+                <h3 class="text-xl font-semibold mb-4 mt-6">Salurkan Donasi Anda Melalui:</h3>
+                <div class="flex items-center justify-center mb-2">
+                    <img src="https://www.linkqu.id/wp-content/uploads/2021/07/filedownload.png" alt="Logo DANA" class="h-8 w-auto mr-2" style="max-width:72px;min-width:40px;object-fit:contain;background:white;border-radius:0.5rem;padding:2px;box-shadow:0 1px 4px rgba(0,0,0,0.07);">
+                    <strong class="font-medium">Akun DANA:</strong>
+                    <span class="ml-2 text-gray-800">0851 7727 2672</span>
+                </div>
+                <p class="mb-4"><strong class="font-medium">Atas Nama:</strong> Pemuda Siantar Jumat Berbagi</p>
+                <p class="mb-6 text-sm text-gray-600">Untuk konfirmasi donasi atau informasi lebih lanjut, silakan hubungi kami.</p>
+                <a href="#kontak" class="btn btn-primary w-full">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="py-16 md:py-24 bg-gray-100 fade-in">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p class="section-subtitle">Kami senang mendengar dari Anda. Jangan ragu untuk menghubungi kami untuk pertanyaan, saran, atau kolaborasi.</p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch md:items-start">
+                <!-- Kontak Info -->
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-start mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-500 flex items-center">
+                        <svg class="h-7 w-7 mr-2 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2h7.5"/></svg>
+                        Info Kontak
+                    </h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-center gap-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 12a4 4 0 01-8 0V8a4 4 0 018 0v4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v2m0 0h-2m2 0h2"/></svg>
+                            </span>
+                            <span class="font-semibold w-24 text-gray-800">Email</span>
+                            <a href="mailto:psjb.official@gmail.com" class="font-medium text-gray-700 hover:underline truncate">psjb.official@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.28a2 2 0 011.7 1.06l1.1 2.2a2 2 0 01-.45 2.45l-1.1.88a11.05 11.05 0 005.52 5.52l.88-1.1a2 2 0 012.45-.45l2.2 1.1A2 2 0 0121 18.72V21a2 2 0 01-2 2h-1C9.163 23 1 14.837 1 5V4a2 2 0 012-2z"/></svg>
+                            </span>
+                            <span class="font-semibold w-24 text-gray-800">WhatsApp</span>
+                            <a href="https://wa.me/6285177272672" target="_blank" rel="noopener" class="font-medium text-gray-700 hover:underline truncate">+62 851 7727 2672</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+                            </span>
+                            <span class="font-semibold w-24 text-gray-800">Instagram</span>
+                            <a href="https://instagram.com/psjumatberbagi" target="_blank" rel="noopener" class="font-medium text-gray-700 hover:underline truncate">@psjumatberbagi</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4a1 1 0 001 1h4"/></svg>
+                            </span>
+                            <span class="font-semibold w-24 text-gray-800">Telepon</span>
+                            <a href="tel:+6285177272672" class="font-medium text-gray-700 hover:underline truncate">+62 851 7727 2672</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Form Kontak -->
+                <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-500 flex items-center"><svg class="h-7 w-7 mr-2 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 14h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"/></svg>Formulir Pesan</h3>
+                    <form action="https://formspree.io/f/xdoqzqzq" method="POST" id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="nama" class="block text-gray-700 font-medium mb-1">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-1">Alamat Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required>
+                        </div>
+                        <div>
+                            <label for="pesan" class="block text-gray-700 font-medium mb-1">Pesan Anda</label>
+                            <textarea id="pesan" name="pesan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-full md:w-auto">Kirim Pesan</button>
+                        </div>
+                    </form>
+                    <div id="formMessage" class="mt-4 text-center"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm mt-1"> "Berbagi adalah tindakan terbaik untuk mensyukuri yang telah kita dapatkan"</p>
+            <p class="text-sm">&copy; <span id="currentYear"></span> Pemuda Siantar Jumat Berbagi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Tombol WhatsApp Mengambang -->
+        <a href="https://wa.me/6285177272672" target="_blank" rel="noopener" id="wa-float-btn" aria-label="Chat WhatsApp">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="24" fill="#25D366"/>
+                <path d="M34.6 28.7c-.5-.2-2.8-1.4-3.2-1.6-.4-.2-.7-.2-1 .2-.3.4-1.1 1.3-1.3 1.5-.2.2-.5.3-.9.1-.5-.2-2-0.7-3.8-2.2-1.4-1.2-2.3-2.7-2.6-3.2-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.2-.4.3-.7.1-.2 0-.5 0-.7 0-.2-.9-2.2-1.2-3-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.5.1-.7.3-.2.2-1.1 1-1.1 2.5 0 1.5 1.1 3 1.2 3.2.1.2 2.1 3.3 5.1 4.5 1.7.7 2.3.8 2.7.7.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1.1z" fill="#fff"/>
+            </svg>
+        </a>
+    <!-- Akhir Tombol WhatsApp Mengambang -->
+
+    <!-- Tombol Instagram Mengambang -->
+        <a href="https://instagram.com/psjumatberbagi" target="_blank" rel="noopener" id="ig-float-btn" aria-label="Instagram PSJB">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="24" fill="#E1306C"/>
+                <rect x="14" y="14" width="20" height="20" rx="6" fill="white"/>
+                <circle cx="24" cy="24" r="5" fill="#E1306C"/>
+                <circle cx="31" cy="17" r="1.5" fill="#E1306C"/>
+            </svg>
+        </a>
+    <!-- Akhir Tombol Instagram Mengambang -->
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('header nav a:not(.flex)'); // Exclude logo link container
+        const mobileNavLinksMenu = document.querySelectorAll('#mobile-menu a');
+
+
+        function changeNav(targetLinks) {
+            let current = 'beranda'; // Default ke beranda
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 70) { // 70 adalah tinggi header + sedikit offset
+                    current = section.getAttribute('id');
+                }
+            });
+
+            targetLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                link.classList.remove('bg-yellow-500', 'text-white'); // Hapus kelas aktif kuning lama
+                link.classList.add('nav-link'); // Tambah kelas nav-link standar
+                
+                const href = link.getAttribute('href');
+                if (href && href.includes('#') && href.substring(1) === current) {
+                    link.classList.add('nav-link-active'); // Tambah kelas aktif baru (kuning)
+                    link.classList.add('bg-yellow-500', 'text-white'); 
+                    link.classList.remove('nav-link'); // Hapus kelas nav-link standar jika aktif
+                    link.classList.remove('text-gray-700', 'hover:bg-gray-200', 'hover:text-gray-900'); // Hapus styling standar jika aktif
+                } else {
+                     // Pastikan styling standar diterapkan jika tidak aktif
+                    link.classList.add('text-gray-700', 'hover:bg-gray-200', 'hover:text-gray-900');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', () => {
+            changeNav(navLinks);
+            changeNav(mobileNavLinksMenu);
+        });
+        // Initial check on page load
+        changeNav(navLinks);
+        changeNav(mobileNavLinksMenu);
+
+        // --- Donation Progress (Contoh Data Statis) ---
+        // Hapus deklarasi lama agar tidak double
+        // const targetDonasi = 10000000; 
+        // const terkumpulDonasi = 6500000; 
+
+        // --- Fitur Dinamis: Update Donasi ---
+        let targetDonasi = 10000000;
+        let terkumpulDonasi = 6500000;
+        const inputTarget = document.getElementById('inputTarget');
+        const inputTerkumpul = document.getElementById('inputTerkumpul');
+        const donasiForm = document.getElementById('donasiForm');
+        const donasiFormMsg = document.getElementById('donasiFormMsg');
+        const targetDonasiText = document.getElementById('targetDonasiText');
+
+        if (donasiForm) {
+            donasiForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let t = parseInt(inputTarget.value.replace(/\D/g, ''));
+                let k = parseInt(inputTerkumpul.value.replace(/\D/g, ''));
+                if (isNaN(t) || t < 1000) {
+                    donasiFormMsg.textContent = 'Target donasi minimal Rp 1.000';
+                    return;
+                }
+                if (isNaN(k) || k < 0) {
+                    donasiFormMsg.textContent = 'Jumlah terkumpul tidak valid';
+                    return;
+                }
+                targetDonasi = t;
+                terkumpulDonasi = k;
+                updateDonasiProgress();
+                donasiFormMsg.textContent = 'Progress donasi berhasil diperbarui!';
+            });
+        }
+        function updateDonasiProgress() {
+            const persentaseTerkumpul = Math.min((terkumpulDonasi / targetDonasi) * 100, 100);
+            if (progressBar && progressText && targetDonasiText) {
+                progressBar.style.width = persentaseTerkumpul + '%';
+                progressBar.textContent = persentaseTerkumpul.toFixed(0) + '%';
+                progressBar.setAttribute('aria-valuenow', persentaseTerkumpul.toFixed(0));
+                progressText.textContent = `Terkumpul: Rp ${terkumpulDonasi.toLocaleString('id-ID')}`;
+                targetDonasiText.textContent = targetDonasi.toLocaleString('id-ID');
+            }
+        }
+        updateDonasiProgress();
+
+        // --- Fitur Dinamis: Upload Galeri ---
+        const galeriUpload = document.getElementById('galeriUpload');
+        const galeriGrid = document.getElementById('galeriGrid');
+        if (galeriUpload && galeriGrid) {
+            galeriUpload.addEventListener('change', function(e) {
+                const files = Array.from(galeriUpload.files);
+                files.forEach(file => {
+                    if (!file.type.startsWith('image/')) return;
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        const div = document.createElement('div');
+                        div.className = 'rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow';
+                        div.innerHTML = `<img src="${ev.target.result}" alt="Upload" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-300">`;
+                        galeriGrid.prepend(div);
+                    };
+                    reader.readAsDataURL(file);
+                });
+                galeriUpload.value = '';
+            });
+        }
+
+        // --- Fitur Dinamis: Preview Data Form Kontak ---
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                formMessage.textContent = 'Pesan Anda sedang dikirim...';
+                formMessage.className = 'mt-4 text-center text-blue-600';
+                const nama = contactForm.nama.value;
+                const email = contactForm.email.value;
+                const pesan = contactForm.pesan.value;
+                setTimeout(() => {
+                    const isSuccess = true; 
+                    if (isSuccess) {
+                        formMessage.innerHTML = `<span class='text-green-600'>Pesan Anda berhasil terkirim! Terima kasih.</span><br><span class='block mt-2 text-xs text-gray-700'>Preview Data:<br>Nama: <b>${nama}</b><br>Email: <b>${email}</b><br>Pesan: <b>${pesan.replace(/\n/g,'<br>')}</b></span>`;
+                        formMessage.className = 'mt-4 text-center';
+                        contactForm.reset(); 
+                    } else {
+                        formMessage.textContent = 'Maaf, terjadi kesalahan saat mengirim pesan. Silakan coba lagi.';
+                        formMessage.className = 'mt-4 text-center text-red-600';
+                    }
+                }, 2000); 
+            });
+        }
+
+        // Tambah posisi untuk tombol Instagram
+        const igBtn = document.getElementById('ig-float-btn');
+        const waBtn = document.getElementById('wa-float-btn');
+        if (igBtn && waBtn) {
+            waBtn.style.bottom = '5.5rem'; // WhatsApp di atas Instagram
+            igBtn.style.bottom = '1.5rem'; // Instagram di bawah
+            igBtn.style.right = waBtn.style.right;
+        }
+    </script>
+
+</body>
+</html>

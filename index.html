@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSJB - Pemuda Siantar Jumat Berbagi</title>
+    <link rel="icon" href="PSJB New Logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="PSJB New Logo.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -613,7 +615,7 @@
                         </li>
                         <li class="flex items-center gap-4">
                             <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-100 text-gray-500 flex-shrink-0">
-                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16 3v4a1 1 0 001 1h4"/></svg>
+                                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3v4a1 1 0 001 1h4"/></svg>
                             </span>
                             <span class="font-semibold w-24 text-gray-800">Telepon</span>
                             <a href="tel:+6285177272672" class="font-medium text-gray-700 hover:underline truncate">+62 851 7727 2672</a>
@@ -623,24 +625,31 @@
                 <!-- Form Kontak -->
                 <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-center">
                     <h3 class="text-xl font-semibold mb-4 text-yellow-500 flex items-center"><svg class="h-7 w-7 mr-2 text-yellow-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 14h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8s-9-3.582-9-8 4.03-8 9-8 9 3.582 9 8z"/></svg>Formulir Pesan</h3>
-                    <form action="https://formspree.io/f/xdoqzqzq" method="POST" id="contactForm" class="space-y-4">
-                        <div>
-                            <label for="nama" class="block text-gray-700 font-medium mb-1">Nama Lengkap</label>
-                            <input type="text" id="nama" name="nama" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-1">Alamat Email</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required>
-                        </div>
-                        <div>
-                            <label for="pesan" class="block text-gray-700 font-medium mb-1">Pesan Anda</label>
-                            <textarea id="pesan" name="pesan" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary w-full md:w-auto">Kirim Pesan</button>
-                        </div>
-                    </form>
-                    <div id="formMessage" class="mt-4 text-center"></div>
+                    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdQQU1jm7cSxVfpMcmVKRfAXddd0ts-NM_C-SShbZwSLB5VVg/formResponse" method="POST" target="_blank" id="contactForm" class="space-y-4" autocomplete="off">
+                    <div>
+                        <label for="nama" class="block text-gray-700 font-medium mb-1">Nama Lengkap</label>
+                        <input type="text" id="nama" name="entry.1166974658" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 font-medium mb-1">Alamat Email</label>
+                        <input type="email" id="email" name="entry.1045781291" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="pesan" class="block text-gray-700 font-medium mb-1">Pesan Anda</label>
+                        <textarea id="pesan" name="entry.839337160" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition-all" required autocomplete="off"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary w-full md:w-auto">Kirim Pesan</button>
+                    </div>
+                </form>
+                <div class="mt-4 text-center text-sm text-gray-600">Formulir ini akan otomatis mengirim data ke Google Sheet PSJB.</div>
+                <!--
+                Cara setup:
+                1. Buat Google Form baru dengan field: Nama, Email, Pesan.
+                2. Klik kanan pada form, Inspect Element, cari 'form action' dan 'name' setiap input (entry.xxxxx).
+                3. Ganti action dan name di atas sesuai Google Form Anda.
+                4. Data akan otomatis masuk ke Google Sheet yang terhubung ke Google Form.
+                -->
                 </div>
             </div>
         </div>
@@ -655,7 +664,7 @@
 
     <!-- Tombol Mengambang Instagram & WhatsApp -->
     <div id="floating-buttons" class="fixed z-50 right-4 bottom-4 flex flex-col gap-3 md:flex-row md:gap-2 items-end md:items-center">
-        <a href="https://instagram.com/psjumatberbagi" target="_blank" aria-label="Instagram PSJB" class="floating-btn-instagram shadow-lg">
+        <a href="https://instagram.com/psjumatberbagi" target="_blank" aria-label="WhatsApp PSJB" class="floating-btn-instagram shadow-lg">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0 1 20.5 7.75v8.5A4.25 4.25 0 0 1 16.25 20.5h-8.5A4.25 4.25 0 0 1 3.5 16.25v-8.5A4.25 4.25 0 0 1 7.75 3.5zm8.25 2.25a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/></svg>
         </a>
         <a href="https://wa.me/6285177272672" target="_blank" aria-label="WhatsApp PSJB" class="floating-btn-wa shadow-lg">
